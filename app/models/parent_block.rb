@@ -1,0 +1,2 @@
+class ParentBlock < ApplicationRecord
+end
