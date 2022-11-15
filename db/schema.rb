@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_15_035851) do
+ActiveRecord::Schema.define(version: 2022_11_15_081629) do
+
+  create_table "child_blocks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.string "body", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_id"], name: "index_child_blocks_on_team_id"
+  end
 
   create_table "parent_blocks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "team_id", null: false
@@ -28,5 +36,7 @@ ActiveRecord::Schema.define(version: 2022_11_15_035851) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "child_blocks", "teams", name: "fk_child_blocks_on_team_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "parent_blocks", "child_blocks", name: "fk_parent_blocks_on_child_block_id", on_update: :cascade, on_delete: :cascade
   add_foreign_key "parent_blocks", "teams", name: "fk_parent_blocks_on_team_id", on_update: :cascade, on_delete: :cascade
 end
