@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_07_081929) do
+ActiveRecord::Schema.define(version: 2023_02_07_070547) do
 
   create_table "child_blocks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "team_id", null: false
@@ -22,8 +22,7 @@ ActiveRecord::Schema.define(version: 2023_02_07_081929) do
 
   create_table "parent_blocks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "team_id", null: false
-    t.bigint "child_block_id"
-    t.string "child_block_body", null: false
+    t.bigint "child_block_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["child_block_id"], name: "index_parent_blocks_on_child_block_id"
